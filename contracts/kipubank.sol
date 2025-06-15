@@ -56,13 +56,15 @@ event evtRetiro(address indexed user, uint256 monto);
     }
 
     /// @dev Funcion donde deposita el monto en el baul.
-    function deposito() public payable noCero{
+    /// @param monto Monto que desea retirar
+
+    function deposito(uint256 monto) public payable noCero{
 
         // Guarda el monto en el deposito.
-        balances[msg.sender] += msg.value;
+        balances[msg.sender] += monto;
         updateCounts(false);
         // Emite el evento de depósito.
-        emit evtDeposito(msg.sender, msg.value);
+        emit evtDeposito(msg.sender, monto);
     }
 
     /// @dev Funcion donde deposita el monto en el baul.
